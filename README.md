@@ -3,6 +3,7 @@ Capacitación: Git, bash y docker
 Integrantes:
 - Joan Tasayco
 - Angello Peña
+- Carlos Gomez
 
 1. ¿Qué es y para qué sirve GIT?
 Es una herramienta de control de versiones, que nos permite respaldar nuestro trabajo, compoartirlo y controlar sus cambios.
