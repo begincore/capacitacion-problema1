@@ -1,0 +1,7 @@
+version: '2'
+services:
+  nginx:
+    container_name: "mginx_app_darek"
+    image: "nginx:alpine"
+    ports:
+      - "1080:80"

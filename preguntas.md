@@ -76,3 +76,34 @@ expose 80
 docker run --name Mikhael -i -t angello/orbis-training-docker:0.2.0 cat app/preguntas.md
 
 ## 9. Subir los cambios como un nuevo feature
+git commit -m 'feat: Se agrega respuestas restantas de la parte 5'
+git tag -a v1.1
+
+## Preguntas
+
+1. ¿Cuál es la diferencia entre una imagen y un contenedor?
+La imagen son un conjunto de archios que representa un aplicacion o conjuno de aplicaciones, el conteneder es el espacio de memoria sobre el cual se ejecuta la imagene.
+
+2. ¿Cómo listo las imágenes que hay en mi computadora?
+docker images
+
+3. ¿Cómo salgo de un contenedor de docker?
+exit
+
+4. ¿Se elimina el contenedor al salir de ella?
+Si estea creado de modo interactivo
+
+5. ¿Cómo elimino un contenedor?
+docker rm idcontenedor
+
+6. ¿Para qué es necesario el flag `-i`, `-t`, `--rm`?
+-i: ejecuta el contenedor de modo interactivo
+-t: actiua uso de la terminal tty
+--rm: automaticamente eliminara el contenedor cuando se salga
+
+7. ¿Cómo verifico que el archivo creado se encuentra en la imagen?
+ejecutando la imagen eun contenedor y listarlo
+docker run --name Mikhael -i angello/orbis-training-docker:0.2.0 ls /app
+
+8. ¿Cómo se comenta una linea de código en Dockerfile?
+con el caracter #

@@ -42,3 +42,44 @@ Si no se antepone el nombre del usuario va intentar subir a la raiz de docker y 
 
 ### 9. ¿Que pasa si creo una imagen sin especificar una versión o tag, con qué versión se crea?
 Se crea el tag vacio.
+
+# Parte 6
+## 1. Reemplazar la imagen node:10.10.0-slim por nginx:alpine
+
+- Construir la imagen de docker con versión MAJOR, versionado semantico
+- Subir el tag a dockerhub
+
+from nginx:alpine
+label maintainer = 'williams.pena@orbis.com.pe'
+expose 80
+
+docker build -t angello/orbis-training-docker:1.0.0 /mnt/d/angello/docker/.
+
+docker push angello/orbis-training-docker:1.0.0
+
+## 2. Crear un contenedor exponiendo el puerto 80 a través del puerto 1080 al hacer docker run
+docker run -d -p:1080:80 --name Darek angello/orbis-training-docker:1.0.0
+
+## 3. Crear una carpeta app, luego poner el archivo intro.md y preguntas.md
+from nginx:alpine
+label maintainer = 'williams.pena@orbis.com.pe'
+run mkdir app
+copy preguntas.md  ./app/
+copy Intro.md  ./app/
+
+docker build -t angello/orbis-training-docker:1.0.0 /mnt/d/angello/Proyectos/orbis-training-project/.
+
+Para accede al ngnx: docker exec -it Darek bin/sh
+
+## 5. Agregar docker-compose para la construcción y ejecución de la imagen
+docker-compose.yml
+version: '2'
+services:
+  nginx:
+    container_name: "mginx_app_darek"
+    image: "nginx:alpine"
+    ports:
+      - "1080:80"
+
+
+docker-compose -f /mnt/d/angello/Proyectos/orbis-training-project/docker-compose.yml up
