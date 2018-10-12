@@ -22,3 +22,46 @@ Markdown es un lenguaje de marcado que facilita la aplicación de formato a un t
 
 **6. ¿Cómo inicializo y configuro un proyecto de git?**
 con el comando git init
+
+# Parte 5
+
+## 1. Listar las carpetas que hay dentro de la imagen
+
+- Levantar la imagen: docker run -d -p "8080:80" --name  Mikhael -t angello/orbis-training-docker:0.2.0 bash
+- Se acceder a la imagen: docker run -d -p "8080:80" --name  Mikhael -t angello/orbis-training-docker:0.2.0 bash
+- Se lista: ls -la
+
+### ¿Porqué es necesario crear un contenedor con esta bandera -it ? ¿Qué pasa si no le pongo -it?
+La bandera -it especifica que se cree en modo interactivo y usar el TTY, si no se pone sale error de #PATH
+
+### ¿Para qué sirve ejecutar el comando bash al ejecutar una imagen?
+Permite activar el bash para ejecutar comandos sobre la imagen
+
+## 2. En caso de que el contenedor esté, entonces eliminarlo
+docker kill Mikhael
+
+### ¿Cuál es la diferencia entre docker ps y docker ps -a?
+docker ps, lista los procesos ejecutando. 
+docker ps -a, lista todos los procesos.
+
+## 3. Copiar el archivo preguntas.md en la imagen
+from node:10.10.0-slim
+label maintainer = 'williams.pena@orbis.com.pe'
+run apt-get update && apt-get install
+copy preguntas.md  ./app/
+expose 80
+
+## 4. Verificar que el archivo preguntas.md exista en la imagen
+
+- Crear en modo interactivo: docker run -i angello/orbis-training-docker:0.2.0 bash
+- Obtener el id de la instancia: docker inspect -f '{{.Id}}'  Mikhael | resultado: fe1169425bbb4711915cf15e2f68e6e105f478385bebbfea14cfc9408cdd3536
+
+--Ubicacion del proyecto desde ubuntus: 
+/mnt/d/angello/proyectos/orbis-training-project
+
+## 5. Subir los cambios como un nuevo feature
+
+## 6. Al construir la imagen, listar los archivos del directorio /app
+docker run --name Mikhael -i angello/orbis-training-docker:0.2.0 ls /app
+
+## 6. Adicionalmente, al construir la imagen, mostrar el contenido del archivo preguntas.md
