@@ -60,8 +60,19 @@ expose 80
 /mnt/d/angello/proyectos/orbis-training-project
 
 ## 5. Subir los cambios como un nuevo feature
+git commit -m 'feat preguntas: Se agrega parte de las respuestas de la Parte 5'
 
 ## 6. Al construir la imagen, listar los archivos del directorio /app
 docker run --name Mikhael -i angello/orbis-training-docker:0.2.0 ls /app
 
-## 6. Adicionalmente, al construir la imagen, mostrar el contenido del archivo preguntas.md
+## 7. Adicionalmente, al construir la imagen, mostrar el contenido del archivo preguntas.md
+from node:10.10.0-slim
+label maintainer = 'williams.pena@orbis.com.pe'
+copy preguntas.md  ./app/
+run apt-get update && apt-get install && cat app/preguntas.md
+expose 80
+
+## 8. Agregar el comando para ejecutar el contenedor
+docker run --name Mikhael -i -t angello/orbis-training-docker:0.2.0 cat app/preguntas.md
+
+## 9. Subir los cambios como un nuevo feature
